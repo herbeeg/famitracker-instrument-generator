@@ -1,5 +1,6 @@
 import tkinter as tk
 
+import fds.fds_view as fds
 import main.main_menu as main
 
 class App(tk.Frame):
@@ -12,14 +13,25 @@ class App(tk.Frame):
         self.pack()
 
     def loadView(self, view='menu'):
+        self.clearView()
+
         if 'menu' == view:
             self.main = main.MainMenu(self)
             self.main.pack()
+
+        if 'fds' == view:
+            self.fds = fds.FDSView(self)
+            self.fds.pack()
+    
+    def clearView(self):
+        for widget in self.winfo_children():
+            widget.destroy()
 
 if '__main__' == __name__:
     """Setup root tkinter window."""
     root = tk.Tk()
     root.title('FamiTracker Instrument Generator')
+    root.geometry('480x320')
 
     app = App(master=root)
     app.mainloop()

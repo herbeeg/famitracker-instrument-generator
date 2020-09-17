@@ -1,5 +1,7 @@
 import tkinter as tk
 
+from functools import partial
+
 class MainMenu(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
@@ -8,7 +10,7 @@ class MainMenu(tk.Frame):
         self.createWidgets()
 
     def createWidgets(self):
-        self.fds_open = tk.Button(self)
+        self.fds_open = tk.Button(self, command=partial(self.master.loadView, 'fds'))
         self.fds_open['text'] = 'FDS'
         self.fds_open.grid(row=0, column=0)
 
