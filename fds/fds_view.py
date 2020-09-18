@@ -8,6 +8,8 @@ class FDSView(tk.Frame):
         super().__init__(master)
         self.master = master
 
+        self.frame_padding = 20
+
         self.createWidgets()
 
     def createWidgets(self):
@@ -25,11 +27,11 @@ class FDSView(tk.Frame):
         self.label_dropdown.grid(row=1, column=0)
 
         self.dropdown_type = tk.OptionMenu(self, self.wave_type, *types)
-        self.dropdown_type.grid(row=1, column=1)
+        self.dropdown_type.grid(row=2, column=0)
 
         self.button_generate = tk.Button(self, command=self.generateWave)
         self.button_generate['text'] = 'Generate'
-        self.button_generate.grid(row=2, column=0)
+        self.button_generate.grid(row=3, column=0, pady=self.frame_padding)
 
     def generateWave(self):
         self.graph_canvas = tk.Frame(self)
@@ -37,4 +39,11 @@ class FDSView(tk.Frame):
         self.wave_table = fds.FDSWaveGenerator().getWave()
         self.wave_graph = graph.GraphGenerator(master=self.graph_canvas, wave_table=self.wave_table)
 
-        self.graph_canvas.grid(row=3, column=0)
+        self.graph_canvas.grid(row=4, column=0)
+
+        self.button_save = tk.Button(self, command=self.saveWave)
+        self.button_save['text'] = 'Save'
+        self.button_save.grid(row=5, column=0, pady=self.frame_padding)
+
+    def saveWave(self):
+        return
