@@ -14,20 +14,24 @@ class SONG_INFORMATION:
         
     @staticmethod
     def TITLE():
-        return 'My Generated Song'
+        return 'TITLE           "My Generated Song"'
 
     @staticmethod
     def AUTHOR():
-        return 'Jonpon'
+        return 'AUTHOR          "Jonpon"'
 
     @staticmethod
     def COPYRIGHT():
-        return '(c) Jon Herbst'
+        return 'COPYRIGHT       "(c) Jon Herbst"'
 
 class SONG_COMMENT:
     @staticmethod
+    def HEADER():
+        return '# Song comment'
+
+    @staticmethod
     def COMMENT():
-        return 'A blank song with a randomly generated instrument.'
+        return 'COMMENT "A blank song with a randomly generated instrument."'
 
 class GLOBAL_SETTINGS:
     @staticmethod
