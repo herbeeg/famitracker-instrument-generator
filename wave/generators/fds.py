@@ -14,8 +14,8 @@ class FDSWaveGenerator:
         index = 0
 
         while self.wave_length > index:
-            self.wave[0].extend(self.nextPair())
-            self.wave[1].extend([index, index+1])
+            self.wave[0].extend([index, index+1])
+            self.wave[1].extend(self.nextPair())
 
             index += 2
 

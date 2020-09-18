@@ -17,7 +17,7 @@ class GraphGenerator(tk.Frame):
     def createWidget(self):
         figure = Figure(figsize=(5,5), dpi=100)
         graph = figure.add_subplot(111)
-        graph.plot(self.wave_table[1], self.wave_table[0])
+        graph.plot(self.wave_table[0], self.wave_table[1])
 
         canvas = FigureCanvasTkAgg(figure, self.master)
         canvas.draw()
