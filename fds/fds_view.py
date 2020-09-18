@@ -34,7 +34,7 @@ class FDSView(tk.Frame):
     def generateWave(self):
         self.graph_canvas = tk.Frame(self)
 
-        self.wave_table = fds.FDSWaveGenerator()
-        self.wave_graph = graph.GraphGenerator(master=self.graph_canvas)
+        self.wave_table = fds.FDSWaveGenerator().getWave()
+        self.wave_graph = graph.GraphGenerator(master=self.graph_canvas, wave_table=self.wave_table)
 
         self.graph_canvas.grid(row=3, column=0)

@@ -6,16 +6,18 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 
 class GraphGenerator(tk.Frame):
-    def __init__(self, master=None):
+    def __init__(self, master=None, wave_table=[]):
         super().__init__(master)
         self.master = master
+
+        self.wave_table = wave_table
 
         self.createWidget()
 
     def createWidget(self):
         figure = Figure(figsize=(5,5), dpi=100)
         graph = figure.add_subplot(111)
-        graph.plot([1,2,3,4,5,6,7,8], [5,1,5,3,3,7,9,4])
+        graph.plot(self.wave_table[1], self.wave_table[0])
 
         canvas = FigureCanvasTkAgg(figure, self.master)
         canvas.draw()
