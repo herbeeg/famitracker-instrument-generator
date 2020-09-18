@@ -1,3 +1,4 @@
+import tkinter.filedialog
 import tkinter as tk
 
 import wave.generators.fds as fds
@@ -46,4 +47,13 @@ class FDSView(tk.Frame):
         self.button_save.grid(row=5, column=0, pady=self.frame_padding)
 
     def saveWave(self):
-        return
+        filename = tk.filedialog.asksaveasfilename(title='Save FDS Wave', filetypes=[('Text Files', '*.txt')])
+
+        if filename:
+            try:
+                with open(filename, 'w+') as text_file:
+                    file_contents = ''
+                    text_file.write(file_contents)
+                    text_file.close()
+            except Exception as ex:
+                tk.messagebox.showerror(title='Error Saving Wave', message='Unable to save file %s' % filename)

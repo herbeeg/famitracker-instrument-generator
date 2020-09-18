@@ -1,7 +1,7 @@
 import tkinter as tk
 
-import fds.fds_view as fds
-import main.main_menu as main
+import views.fds_view as fds
+import views.main_menu as main
 
 class App(tk.Frame):
     def __init__(self, master=None):

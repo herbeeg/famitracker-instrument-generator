@@ -1,1 +1,1 @@
-"""Package generation purposes."""
+"""wave package generation."""
