@@ -1,6 +1,12 @@
 import tkinter as tk
 
 import wave.generators.fds as fds
+import graph.graph_gen as graph
+
+import matplotlib
+matplotlib.use('TkAgg')
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.figure import Figure
 
 class FDSView(tk.Frame):
     def __init__(self, master=None):
@@ -31,4 +37,17 @@ class FDSView(tk.Frame):
         self.button_generate.grid(row=2, column=0)
 
     def generateWave(self):
-        self.wave_table = fds()
+        self.graph_canvas = tk.Frame(self)
+
+        figure = Figure(figsize=(5,5), dpi=100)
+        graph = figure.add_subplot(111)
+        graph.plot([1,2,3,4,5,6,7,8], [5,1,5,3,3,7,9,4])
+
+        canvas = FigureCanvasTkAgg(figure, self.graph_canvas)
+        canvas.draw()
+        canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
+
+        #self.wave_table = fds.FDSWaveGenerator()
+        #self.wave_graph = graph.GraphGenerator(master=self.graph_canvas)
+
+        self.graph_canvas.grid(row=3, column=0)
