@@ -17,6 +17,6 @@ class GraphGenerator(tk.Frame):
         graph = figure.add_subplot(111)
         graph.plot([1,2,3,4,5,6,7,8], [5,1,5,3,3,7,9,4])
 
-        canvas = FigureCanvasTkAgg(figure, self)
+        canvas = FigureCanvasTkAgg(figure, self.master)
         canvas.draw()
         canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
