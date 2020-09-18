@@ -9,6 +9,10 @@ class WRAPPER:
 
 class SONG_INFORMATION:
     @staticmethod
+    def HEADER():
+        return '# Song information'
+        
+    @staticmethod
     def TITLE():
         return 'My Generated Song'
 

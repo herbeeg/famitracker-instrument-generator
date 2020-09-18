@@ -2,7 +2,8 @@ import tkinter.filedialog
 import tkinter as tk
 
 import wave.generators.fds as fds
-import graph.graph_gen as graph
+import wave.graph.graph_gen as graph
+import wave.file.file_gen as file_gen
 
 class FDSView(tk.Frame):
     def __init__(self, master=None):
@@ -52,7 +53,7 @@ class FDSView(tk.Frame):
         if filename:
             try:
                 with open(filename, 'w+') as text_file:
-                    file_contents = ''
+                    file_contents = file_gen.FileGeneration(expansion=4).generate()
                     text_file.write(file_contents)
                     text_file.close()
             except Exception as ex:
