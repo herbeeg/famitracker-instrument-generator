@@ -14,15 +14,15 @@ class SONG_INFORMATION:
         
     @staticmethod
     def TITLE():
-        return 'TITLE           "My Generated Song"'
+        return 'TITLE           ' + '"My Generated Song"'
 
     @staticmethod
     def AUTHOR():
-        return 'AUTHOR          "Jonpon"'
+        return 'AUTHOR          ' + '"Jonpon"'
 
     @staticmethod
     def COPYRIGHT():
-        return 'COPYRIGHT       "(c) Jon Herbst"'
+        return 'COPYRIGHT       ' + '"(c) Jon Herbst"'
 
 class SONG_COMMENT:
     @staticmethod
@@ -31,27 +31,35 @@ class SONG_COMMENT:
 
     @staticmethod
     def COMMENT():
-        return 'COMMENT "A blank song with a randomly generated instrument."'
+        return 'COMMENT ' + '"A blank song with a randomly generated instrument."'
 
 class GLOBAL_SETTINGS:
     @staticmethod
+    def HEADER():
+        return '# Global settings'
+
+    @staticmethod
     def MACHINE():
-        return 0
+        return 'MACHINE         ' + str(0)
     
     @staticmethod
     def FRAMERATE():
-        return 0
+        return 'FRAMERATE       ' + str(0)
+
+    @staticmethod
+    def EXPANSION():
+        return 'EXPANSION       '
 
     @staticmethod
     def VIBRATO():
         """
         'New style' vibrato.
         """
-        return 1
+        return 'VIBRATO         ' + str(1)
 
     @staticmethod
     def SPLIT():
-        return 32
+        return 'SPLIT           ' + str(32)
 
 class TRACKS:
     @staticmethod

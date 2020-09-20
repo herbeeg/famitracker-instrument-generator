@@ -3,6 +3,7 @@ import constants
 class FileGeneration:
     def __init__(self, expansion):
         self.file = ''
+        self.expansion = expansion
 
     def generate(self):
         self.file += self.headers()
@@ -21,6 +22,13 @@ class FileGeneration:
 
         headers += (constants.SONG_COMMENT.HEADER() + '\n')
         headers += (constants.SONG_COMMENT.COMMENT() + '\n\n')
+
+        headers += (constants.GLOBAL_SETTINGS.HEADER() + '\n')
+        headers += (constants.GLOBAL_SETTINGS.MACHINE() + '\n')
+        headers += (constants.GLOBAL_SETTINGS.FRAMERATE() + '\n')
+        headers += (constants.GLOBAL_SETTINGS.EXPANSION() + str(self.expansion) + '\n')
+        headers += (constants.GLOBAL_SETTINGS.VIBRATO() + '\n')
+        headers += (constants.GLOBAL_SETTINGS.SPLIT() + '\n')
 
         return headers
 
