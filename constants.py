@@ -61,6 +61,21 @@ class GLOBAL_SETTINGS:
     def SPLIT():
         return 'SPLIT           ' + str(32)
 
+class MACROS:
+    @staticmethod
+    def HEADER():
+        return '# Macros'
+
+class DPCM_SAMPLES:
+    @staticmethod
+    def HEADER():
+        return '# DPCM samples'
+
+class INSTRUMENTS:
+    @staticmethod
+    def HEADER():
+        return '# Instruments'
+
 class TRACKS:
     @staticmethod
     def TRACK():
