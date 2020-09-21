@@ -5,6 +5,8 @@ import wave.generators.fds as fds
 import wave.graph.graph_gen as graph
 import wave.file.file_gen as file_gen
 
+from functools import partial
+
 class FDSView(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
@@ -38,23 +40,21 @@ class FDSView(tk.Frame):
     def generateWave(self):
         self.graph_canvas = tk.Frame(self)
 
-        self.wave_table = fds.FDSWaveGenerator().getWave()
+        self.generator = fds.FDSWaveGenerator()
+        self.wave_table = self.generator.getWave()
         self.wave_graph = graph.GraphGenerator(master=self.graph_canvas, wave_table=self.wave_table)
 
         self.graph_canvas.grid(row=4, column=0)
 
-        self.button_save = tk.Button(self, command=self.saveWave)
+        self.button_save = tk.Button(self, command=partial(self.saveWave, generator=self.generator))
         self.button_save['text'] = 'Save'
         self.button_save.grid(row=5, column=0, pady=self.frame_padding)
 
-    def saveWave(self):
+    def saveWave(self, generator):
         filename = tk.filedialog.asksaveasfilename(title='Save FDS Wave', filetypes=[('Text Files', '*.txt')])
 
         if filename:
-            try:
-                with open(filename, 'w+') as text_file:
-                    file_contents = file_gen.FileGeneration(expansion=4).generate()
-                    text_file.write(file_contents)
-                    text_file.close()
-            except Exception as ex:
-                tk.messagebox.showerror(title='Error Saving Wave', message='Unable to save file %s' % filename)
+            with open(filename, 'w+') as text_file:
+                file_contents = file_gen.FileGeneration(generator).generate()
+                text_file.write(file_contents)
+                text_file.close()

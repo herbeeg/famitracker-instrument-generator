@@ -1,9 +1,10 @@
 import constants
 
 class FileGeneration:
-    def __init__(self, expansion):
+    def __init__(self, generator):
         self.file = ''
-        self.expansion = expansion
+        self.expansion = generator.getExpansion()
+        self.instrument_mods = generator.getInstrument()
 
     def generate(self):
         self.file += self.headers()
@@ -17,10 +18,7 @@ class FileGeneration:
         return self.file
         
     def headers(self):
-        output = ''
-        output += (constants.WRAPPER.START() + '\n\n')
-
-        return output
+        return (constants.WRAPPER.START() + '\n\n')
 
     def information(self):
         output = ''
@@ -59,7 +57,12 @@ class FileGeneration:
         output = ''
         output += (constants.INSTRUMENTS.HEADER() + '\n')
 
+        for instrument in self.instrument_mods:
+            output += (instrument + '\n')
+
+        output += '\n'
+
         return output
 
     def footers(self):
-        return
+        return (constants.WRAPPER.END())
