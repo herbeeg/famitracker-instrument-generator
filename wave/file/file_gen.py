@@ -15,6 +15,7 @@ class FileGeneration:
         self.file += self.dpcm()
         self.file += self.instruments()
         self.file += self.tracks()
+        self.file += self.footers()
 
         return self.file
         

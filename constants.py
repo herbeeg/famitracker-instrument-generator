@@ -91,10 +91,4 @@ class TRACKS:
 
     @staticmethod
     def ORDER():
-        return [
-            '00',
-            '00',
-            '00',
-            '00',
-            '00'
-        ]
+        return 'ORDER 00 : ' + ' '.join(['00' for i in range(6)])
