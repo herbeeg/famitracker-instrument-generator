@@ -78,23 +78,16 @@ class INSTRUMENTS:
 
 class TRACKS:
     @staticmethod
+    def HEADER():
+        return '# Tracks'
+
+    @staticmethod
     def TRACK():
-        return [
-            64,
-            6,
-            150,
-            'New song'
-        ]
+        return 'TRACK  64   6 150 "New song"'
 
     @staticmethod
     def COLUMNS():
-        return [
-            1,
-            1,
-            1,
-            1,
-            1
-        ]
+        return 'COLUMNS : ' + ' '.join(['1' for i in range(6)])
 
     @staticmethod
     def ORDER():
@@ -105,7 +98,3 @@ class TRACKS:
             '00',
             '00'
         ]
-
-    @staticmethod
-    def PATTERN():
-        return ' : ... .. . ...'

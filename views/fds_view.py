@@ -53,8 +53,10 @@ class FDSView(tk.Frame):
     def saveWave(self, generator):
         filename = tk.filedialog.asksaveasfilename(title='Save FDS Wave', filetypes=[('Text Files', '*.txt')])
 
-        if filename:
+        try:
             with open(filename, 'w+') as text_file:
                 file_contents = file_gen.FileGeneration(generator).generate()
                 text_file.write(file_contents)
                 text_file.close()
+        except Exception as ex:
+            tk.messagebox.showerror(title='Error Saving Wave', message='Unable to save file %s' % filename) 

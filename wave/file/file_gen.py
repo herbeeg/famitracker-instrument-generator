@@ -14,6 +14,7 @@ class FileGeneration:
         self.file += self.macros()
         self.file += self.dpcm()
         self.file += self.instruments()
+        self.file += self.tracks()
 
         return self.file
         
@@ -61,6 +62,15 @@ class FileGeneration:
             output += (instrument + '\n')
 
         output += '\n'
+
+        return output
+
+    def tracks(self):
+        output = ''
+        output += (constants.TRACKS.HEADER() + '\n\n')
+        output += (constants.TRACKS.TRACK() + '\n')
+        output += (constants.TRACKS.COLUMNS() + '\n\n')
+        output += (constants.TRACKS.ORDER() + '\n\n')
 
         return output
 
