@@ -77,3 +77,4 @@ class FileGeneration:
 
     def footers(self):
         return (constants.WRAPPER.END())
+        

@@ -21,3 +21,4 @@ class MainMenu(tk.Frame):
         self.vrc7_open = tk.Button(self)
         self.vrc7_open['text'] = 'VRC7'
         self.vrc7_open.grid(row=2, column=0)
+        

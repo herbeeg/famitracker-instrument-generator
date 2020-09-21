@@ -22,3 +22,4 @@ class GraphGenerator(tk.Frame):
         canvas = FigureCanvasTkAgg(figure, self.master)
         canvas.draw()
         canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
+        

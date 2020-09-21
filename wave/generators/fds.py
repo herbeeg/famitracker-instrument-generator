@@ -41,3 +41,4 @@ class FDSWaveGenerator:
 
     def getName(self):
         return str(self.name)
+        
