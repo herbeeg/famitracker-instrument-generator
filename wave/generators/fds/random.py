@@ -3,11 +3,6 @@ import random
 from .fds import FDSWaveGenerator
 
 class FDSRandomWaveGenerator(FDSWaveGenerator):
-    """
-    Raw value generation for FDS waveforms and
-    specific section construction when
-    dealing with file exports.
-    """
     def __init__(self):
         super().__init__()
 

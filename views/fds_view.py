@@ -85,7 +85,7 @@ class FDSView(tk.Frame):
         elif 'Pulse50' == self.wave_type.get():
             self.generator = pulse_50.FDSPulse50WaveGenerator()
         elif 'Pulse25' == self.wave_type.get():
-            self.generator = pulse_25.FDS25PulseWaveGenerator()
+            self.generator = pulse_25.FDSPulse25WaveGenerator()
 
         try:
             self.wave_table = self.generator.getWave()
