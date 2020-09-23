@@ -58,7 +58,7 @@ if '__main__' == __name__:
     """Setup root tkinter window."""
     root = tk.Tk()
     root.title('FamiTracker Instrument Generator')
-    root.geometry('480x320')
+    root.geometry('640x480')
 
     app = App(master=root)
     app.mainloop()

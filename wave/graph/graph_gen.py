@@ -45,7 +45,7 @@ class GraphGenerator(tk.Frame):
         and grid() placing functions
         in the same window.
         """
-        figure = Figure(figsize=(5,5), dpi=100)
+        figure = Figure(figsize=(4,2), dpi=100)
         """Figure size is measured in inches."""
         graph = figure.add_subplot(111)
         """The default subplot, which creates one row, one column, with index one."""
