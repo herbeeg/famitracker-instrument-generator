@@ -17,4 +17,3 @@ class FDSRandomWaveGenerator(FDSWaveGenerator):
         """
         double = random.randrange(64)
         return (double, double)
-        

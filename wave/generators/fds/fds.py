@@ -87,4 +87,3 @@ class FDSWaveGenerator:
             str: Converted Unix timestamp
         """
         return str(self.name)
-        

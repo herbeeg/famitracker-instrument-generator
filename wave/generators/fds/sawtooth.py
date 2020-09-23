@@ -11,4 +11,3 @@ class FDSSawtoothWaveGenerator(FDSWaveGenerator):
         export as well as matplotlib graph.
         """
         return
-        

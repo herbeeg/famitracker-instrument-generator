@@ -11,4 +11,3 @@ class FDSSineWaveGenerator(FDSWaveGenerator):
         export as well as matplotlib graph.
         """
         return
-        

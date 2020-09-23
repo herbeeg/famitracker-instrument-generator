@@ -11,4 +11,3 @@ class FDSTriangleWaveGenerator(FDSWaveGenerator):
         export as well as matplotlib graph.
         """
         return
-        

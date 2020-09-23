@@ -11,4 +11,3 @@ class FDSPulse50WaveGenerator(FDSWaveGenerator):
         export as well as matplotlib graph.
         """
         return
-        
