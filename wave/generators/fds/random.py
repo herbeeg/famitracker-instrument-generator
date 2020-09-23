@@ -1,7 +1,7 @@
 import random
 import time
 
-class FDSWaveGenerator:
+class FDSRandomWaveGenerator:
     """
     Raw value generation for FDS waveforms and
     specific section construction when

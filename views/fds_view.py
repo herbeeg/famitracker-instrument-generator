@@ -1,11 +1,10 @@
 import tkinter.filedialog
 import tkinter as tk
-
-import wave.generators.fds as fds
 import wave.graph.graph_gen as graph
 import wave.file.file_gen as file_gen
 
 from functools import partial
+from wave.generators.fds import random, sine, triangle, sawtooth, pulse_50, pulse_25
 
 class FDSView(tk.Frame):
     """
@@ -40,7 +39,7 @@ class FDSView(tk.Frame):
         with the command being hooked up
         to the generation function.
         """
-        types = ['Any']
+        types = ['Any', 'Sine', 'Triangle', 'Sawtooth', 'Pulse50', 'Pulse25']
 
         self.wave_type = tk.StringVar(self.master)
         self.wave_type.set('Any')
@@ -75,16 +74,32 @@ class FDSView(tk.Frame):
         """
         self.graph_canvas = tk.Frame(self)
 
-        self.generator = fds.FDSWaveGenerator()
-        self.wave_table = self.generator.getWave()
-        self.wave_graph = graph.GraphGenerator(master=self.graph_canvas, wave_table=self.wave_table)
-        """The graph generator is generic enough to accept any length of wave 'pairs'."""
+        if 'Any' == self.wave_type.get():
+            self.generator = random.FDSRandomWaveGenerator()
+        elif 'Sine' == self.wave_type.get():
+            self.generator = sine.FDSSineWaveGenerator()
+        elif 'Triangle' == self.wave_type.get():
+            self.generator = triangle.FDSTriangleWaveGenerator()
+        elif 'Sawtooth' == self.wave_type.get():
+            self.generator = sawtooth.FDSSawtoothWaveGenerator()
+        elif 'Pulse50' == self.wave_type.get():
+            self.generator = pulse_50.FDSPulse50WaveGenerator()
+        elif 'Pulse25' == self.wave_type.get():
+            self.generator = pulse_25.FDS25PulseWaveGenerator()
 
-        self.graph_canvas.grid(row=4, column=0)
+        try:
+            self.wave_table = self.generator.getWave()
+            self.wave_graph = graph.GraphGenerator(master=self.graph_canvas, wave_table=self.wave_table)
+            """The graph generator is generic enough to accept any length of wave 'pairs'."""
 
-        self.button_save = tk.Button(self, command=partial(self.saveWave, generator=self.generator))
-        self.button_save['text'] = 'Save'
-        self.button_save.grid(row=5, column=0, pady=self.frame_padding)
+            self.graph_canvas.grid(row=4, column=0)
+
+            self.button_save = tk.Button(self, command=partial(self.saveWave, generator=self.generator))
+            self.button_save['text'] = 'Save'
+            self.button_save.grid(row=5, column=0, pady=self.frame_padding)
+        except AttributeError as ex:
+            print(ex)
+            tk.messagebox.showerror(title='Error Generating Wave', message='Unable to generate new FDS waveform.')
 
     def saveWave(self, generator):
         """
