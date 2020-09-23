@@ -98,7 +98,7 @@ class FDSView(tk.Frame):
             self.button_save['text'] = 'Save'
             self.button_save.grid(row=5, column=0, pady=self.frame_padding)
         except AttributeError as ex:
-            print(ex)
+            """Using the common 'better to ask for forgiveness' principle."""
             tk.messagebox.showerror(title='Error Generating Wave', message='Unable to generate new FDS waveform.')
 
     def saveWave(self, generator):
