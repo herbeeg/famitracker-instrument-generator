@@ -4,6 +4,9 @@ from .fds import FDSWaveGenerator
 
 class FDSRandomWaveGenerator(FDSWaveGenerator):
     def __init__(self):
+        """
+        Call parent init function.
+        """
         super().__init__()
 
     def nextPair(self):
