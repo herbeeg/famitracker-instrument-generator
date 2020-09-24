@@ -1,3 +1,5 @@
+import random
+
 from .fds import FDSWaveGenerator
 
 class FDSSineWaveGenerator(FDSWaveGenerator):
@@ -12,16 +14,32 @@ class FDSSineWaveGenerator(FDSWaveGenerator):
         fewer or more constraints to the wave
         generator telling it how far it
         can deviate from a standard
-        sine wave shape. 
+        sine wave shape.
         """
-        super().__init__()
-
         self.wave_position = 0
         self.variance = variance
+
+        super().__init__()
 
     def nextPair(self):
         pair_one = 0
         pair_two = 0
+
+        wave_range_first = [
+            self.wrapWaveValue(self.baseRepresentation()[self.wave_position] - self.variance),
+            self.wrapWaveValue(self.baseRepresentation()[self.wave_position] + self.variance)
+        ]
+
+        wave_range_second = [
+            self.wrapWaveValue(self.baseRepresentation()[self.wave_position+1] - self.variance),
+            self.wrapWaveValue(self.baseRepresentation()[self.wave_position+1] + self.variance)
+        ]
+
+        print(wave_range_first)
+        print(wave_range_second)
+
+        pair_one = random.randrange(wave_range_first[0], wave_range_first[1] + 1)
+        pair_two = random.randrange(wave_range_second[0], wave_range_second[1] + 1)
 
         self.wave_position += 2
 
@@ -33,19 +51,20 @@ class FDSSineWaveGenerator(FDSWaveGenerator):
         of what FamiTracker values are used
         when a user generates a sine wave.
 
-        This is paired with graph plot values
-        which are used to create the
-        matplotlib figure element.
-
         Returns:
-            list: 2D list of waveform and plot values
+            list: Waveform values in range(64)
         """
         return [
-            [
-                33, 36, 39, 42, 45, 48, 50, 53, 55, 57, 59, 60, 61, 62, 63, 63,
-                63, 63, 62, 61, 60, 59, 57, 55, 53, 50, 48, 45, 42, 39, 36, 33,
-                30, 27, 24, 21, 18, 15, 13, 10, 8, 6, 4, 3, 2, 1, 0, 0,
-                0, 0, 1, 2, 3, 4, 6, 8, 10, 13, 15, 18, 21, 24, 27, 30
-            ],
-            list(range(64))
+            33, 36, 39, 42, 45, 48, 50, 53, 55, 57, 59, 60, 61, 62, 63, 63,
+            63, 63, 62, 61, 60, 59, 57, 55, 53, 50, 48, 45, 42, 39, 36, 33,
+            30, 27, 24, 21, 18, 15, 13, 10, 8, 6, 4, 3, 2, 1, 0, 0,
+            0, 0, 1, 2, 3, 4, 6, 8, 10, 13, 15, 18, 21, 24, 27, 30
         ]
+
+    def wrapWaveValue(self, wave_value):
+        if 0 > wave_value:
+            return self.wave_length + wave_value
+        elif self.wave_length <= wave_value:
+            return 0 + (wave_value - self.wave_length)
+        else:
+            return wave_value
