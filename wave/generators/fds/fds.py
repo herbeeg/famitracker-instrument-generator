@@ -49,6 +49,69 @@ class FDSWaveGenerator:
 
         return int(time.time())
 
+    def nextPair(self):
+        """
+        Generate a valid pair of waveform values that
+        can be included in the text export and
+        used to plot on the matplotlib
+        graph.
+
+        The variance is used to judge how far we can
+        stray from a standard waveform but the
+        values cannot be wrapped around from 
+        64 -> 0 as this will completely
+        change the wave dynamics.
+
+        Returns:
+            tuple: Pair of FDS wave values
+        """
+        pair_one = 0
+        pair_two = 0
+
+        wave_range_first = [
+            self.wrapWaveValue(self.getBaseRepresentation()[self.wave_position] - self.variance),
+            self.wrapWaveValue(self.getBaseRepresentation()[self.wave_position] + self.variance)
+        ]
+
+        wave_range_second = [
+            self.wrapWaveValue(self.getBaseRepresentation()[self.wave_position+1] - self.variance),
+            self.wrapWaveValue(self.getBaseRepresentation()[self.wave_position+1] + self.variance)
+        ]
+            
+        pair_one = random.randrange(wave_range_first[0], wave_range_first[0] + 1)
+        pair_two = random.randrange(wave_range_second[0], wave_range_second[1] + 1)
+        """Adding one to the range to include the ceiling value."""
+
+        self.wave_position += 2
+        """Increment by two as we are returning a tuple instead of a single value."""
+
+        return (pair_one, pair_two)
+
+    def wrapWaveValue(self, wave_value):
+        """
+        If the wave value variation goes outside of
+        what's supported, then we snap that
+        value to the floor or ceiling.
+
+        For example, if the next value to generate
+        was between 59 and 69, then if we allowed 
+        values of 59-05, then a value between 0 
+        and 5 would heavily distort the 
+        waveform.
+
+        Args:
+            wave_value (int): Current wave range value to validate
+
+        Returns:
+            int: Same value if within constraints, otherwise 0 or 64 dependant on passing the ceiling/floor
+        """
+        if 0 > wave_value:
+            return 0
+        elif self.wave_length <= wave_value:
+            return 64
+        else:
+            return wave_value
+
     def getWave(self):
         """
         A two-dimension list that we can use to
