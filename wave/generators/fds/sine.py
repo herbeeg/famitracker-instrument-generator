@@ -1,6 +1,14 @@
 from .fds import FDSWaveGenerator
 
 class FDSSineWaveGenerator(FDSWaveGenerator):
+    """
+    Generate a new FDS waveform that is 
+    structurally similar to that of 
+    a sine wave, with a given
+    hint of variance.
+
+    Extends the FDSWaveGenerator class.
+    """
     def __init__(self, variance=5):
         """
         Track the position of the next waveform

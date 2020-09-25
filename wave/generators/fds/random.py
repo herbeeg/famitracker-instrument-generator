@@ -3,6 +3,13 @@ import random
 from .fds import FDSWaveGenerator
 
 class FDSRandomWaveGenerator(FDSWaveGenerator):
+    """
+    Allow the wave generator freedom
+    to create a completely random
+    new valid FDS waveform.
+
+    Extends the FDSWaveGenerator class.
+    """
     def __init__(self):
         """
         Call parent init function.
