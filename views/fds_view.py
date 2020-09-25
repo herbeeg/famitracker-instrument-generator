@@ -40,25 +40,37 @@ class FDSView(tk.Frame):
         to the generation function.
         """
         types = ['Any', 'Sine', 'Triangle', 'Sawtooth', 'Pulse50', 'Pulse25']
+        variance_values = [str(i) for i in range(1, 11)]
 
         self.wave_type = tk.StringVar(self.master)
         self.wave_type.set('Any')
         """Allow tracking of tkinter option menu value."""
 
+        self.wave_variance = tk.IntVar(self.master)
+        self.wave_variance.set(5)
+        """Allow user input to override the default variance."""
+
         self.label_title = tk.Label(self)
         self.label_title['text'] = 'FDS Generator'
         self.label_title.grid(row=0, column=0)
 
-        self.label_dropdown = tk.Label(self)
-        self.label_dropdown['text'] = 'Wave type: '
-        self.label_dropdown.grid(row=1, column=0)
+        self.label_type = tk.Label(self)
+        self.label_type['text'] = 'Wave type: '
+        self.label_type.grid(row=1, column=0)
 
         self.dropdown_type = tk.OptionMenu(self, self.wave_type, *types)
         self.dropdown_type.grid(row=2, column=0)
 
+        self.label_variance = tk.Label(self)
+        self.label_variance['text'] = 'Variance: '
+        self.label_variance.grid(row=3, column=0)
+
+        self.dropdown_variance = tk.OptionMenu(self, self.wave_variance, *variance_values)
+        self.dropdown_variance.grid(row=4, column=0)
+
         self.button_generate = tk.Button(self, command=self.generateWave)
         self.button_generate['text'] = 'Generate'
-        self.button_generate.grid(row=3, column=0, pady=self.frame_padding)
+        self.button_generate.grid(row=5, column=0, pady=self.frame_padding)
 
     def generateWave(self):
         """
@@ -77,26 +89,26 @@ class FDSView(tk.Frame):
         if 'Any' == self.wave_type.get():
             self.generator = random.FDSRandomWaveGenerator()
         elif 'Sine' == self.wave_type.get():
-            self.generator = sine.FDSSineWaveGenerator(variance=5)
+            self.generator = sine.FDSSineWaveGenerator(self.wave_variance.get())
         elif 'Triangle' == self.wave_type.get():
-            self.generator = triangle.FDSTriangleWaveGenerator(variance=5)
+            self.generator = triangle.FDSTriangleWaveGenerator(self.wave_variance.get())
         elif 'Sawtooth' == self.wave_type.get():
-            self.generator = sawtooth.FDSSawtoothWaveGenerator(variance=5)
+            self.generator = sawtooth.FDSSawtoothWaveGenerator(self.wave_variance.get())
         elif 'Pulse50' == self.wave_type.get():
-            self.generator = pulse_50.FDSPulse50WaveGenerator()
+            self.generator = pulse_50.FDSPulse50WaveGenerator(self.wave_variance.get())
         elif 'Pulse25' == self.wave_type.get():
-            self.generator = pulse_25.FDSPulse25WaveGenerator()
+            self.generator = pulse_25.FDSPulse25WaveGenerator(self.wave_variance.get())
 
         try:
             self.wave_table = self.generator.getWave()
             self.wave_graph = graph.GraphGenerator(master=self.graph_canvas, wave_table=self.wave_table)
             """The graph generator is generic enough to accept any length of wave 'pairs'."""
 
-            self.graph_canvas.grid(row=4, column=0)
+            self.graph_canvas.grid(row=6, column=0)
 
             self.button_save = tk.Button(self, command=partial(self.saveWave, generator=self.generator))
             self.button_save['text'] = 'Save'
-            self.button_save.grid(row=5, column=0, pady=self.frame_padding)
+            self.button_save.grid(row=7, column=0, pady=self.frame_padding)
         except AttributeError as ex:
             """Using the common 'better to ask for forgiveness' principle."""
             tk.messagebox.showerror(title='Error Generating Wave', message='Unable to generate new FDS waveform.')
