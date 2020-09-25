@@ -125,6 +125,20 @@ class FDSWaveGenerator:
         return self.wave
 
     def getInstrument(self):
+        """
+        Format the FDS instrument modifications
+        required by FamiTracker in such a
+        way that is recognised by the
+        importer.
+
+        The first list item defines the FDS wave
+        itself and the other items modify the
+        waveform values and add any pitch
+        modulation required.
+
+        Returns:
+            list: Formatted instrument mods aligned with FamiTracker importer
+        """
         return [
             'INSTFDS    0     1   0   0   0 ' + '"' + self.getName() + '"',
             'FDSWAVE    0 : ' + ' '.join([str(s) if 10 <= s else ' ' + str(s) for s in self.getWave()[1]]),

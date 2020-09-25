@@ -2,6 +2,18 @@ from .fds import FDSWaveGenerator
 
 class FDSTriangleWaveGenerator(FDSWaveGenerator):
     def __init__(self, variance=5):
+        """
+        Track the position of the next waveform
+        pair to generate so we know what values 
+        we want to compare against the base 
+        triangle wave representation.
+
+        A "variance" value can be passed to give
+        fewer or more constraints to the wave
+        generator telling it how far it
+        can deviate from a standard
+        sine wave shape.
+        """
         self.wave_position = 0
         self.variance = variance
 
