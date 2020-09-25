@@ -1,15 +1,13 @@
-import random
-
 from .fds import FDSWaveGenerator
 
 class FDSTriangleWaveGenerator(FDSWaveGenerator):
-    def __init__(self):
+    def __init__(self, variance=5):
         self.wave_position = 0
         self.variance = variance
 
         super().__init__()
 
-    def baseRepresentation(self):
+    def getBaseRepresentation(self):
         """
         Store a base waveform value representation
         of what FamiTracker values are used

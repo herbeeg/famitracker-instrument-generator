@@ -1,5 +1,3 @@
-import random
-
 from .fds import FDSWaveGenerator
 
 class FDSSineWaveGenerator(FDSWaveGenerator):
