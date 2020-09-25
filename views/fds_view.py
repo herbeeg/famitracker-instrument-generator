@@ -81,7 +81,7 @@ class FDSView(tk.Frame):
         elif 'Triangle' == self.wave_type.get():
             self.generator = triangle.FDSTriangleWaveGenerator(variance=5)
         elif 'Sawtooth' == self.wave_type.get():
-            self.generator = sawtooth.FDSSawtoothWaveGenerator()
+            self.generator = sawtooth.FDSSawtoothWaveGenerator(variance=5)
         elif 'Pulse50' == self.wave_type.get():
             self.generator = pulse_50.FDSPulse50WaveGenerator()
         elif 'Pulse25' == self.wave_type.get():

@@ -1,13 +1,20 @@
 from .fds import FDSWaveGenerator
 
 class FDSSawtoothWaveGenerator(FDSWaveGenerator):
-    def __init__(self):
+    def __init__(self, variance=5):
+        self.wave_position = 0
+        self.variance = variance
+
         super().__init__()
 
-    def nextPair(self):
+    def getBaseRepresentation(self):
         """
-        Generate a valid, duplicate pair of waveform
-        values to input both into our text file
-        export as well as matplotlib graph.
+        Store a base waveform value representation
+        of what FamiTracker values are used
+        when a user generates a sawtooth 
+        wave.
+
+        Returns:
+            list: Waveform values in range(64)
         """
-        return
+        return list(range(64))
