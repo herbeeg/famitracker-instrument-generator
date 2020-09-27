@@ -52,25 +52,25 @@ class FDSView(tk.Frame):
 
         self.label_title = tk.Label(self)
         self.label_title['text'] = 'FDS Generator'
-        self.label_title.grid(row=0, column=0)
+        self.label_title.grid(row=0, column=0, columnspan=2)
 
         self.label_type = tk.Label(self)
         self.label_type['text'] = 'Wave type: '
-        self.label_type.grid(row=1, column=0)
+        self.label_type.grid(row=1, column=0, columnspan=2)
 
         self.dropdown_type = tk.OptionMenu(self, self.wave_type, *types)
-        self.dropdown_type.grid(row=2, column=0)
+        self.dropdown_type.grid(row=2, column=0, columnspan=2)
 
         self.label_variance = tk.Label(self)
         self.label_variance['text'] = 'Variance: '
-        self.label_variance.grid(row=3, column=0)
+        self.label_variance.grid(row=3, column=0, columnspan=2)
 
         self.dropdown_variance = tk.OptionMenu(self, self.wave_variance, *variance_values)
-        self.dropdown_variance.grid(row=4, column=0)
+        self.dropdown_variance.grid(row=4, column=0, columnspan=2)
 
         self.button_generate = tk.Button(self, command=self.generateWave)
         self.button_generate['text'] = 'Generate'
-        self.button_generate.grid(row=5, column=0, pady=self.frame_padding)
+        self.button_generate.grid(row=5, column=0, pady=self.frame_padding, columnspan=2)
 
     def generateWave(self):
         """
@@ -104,7 +104,7 @@ class FDSView(tk.Frame):
             self.wave_graph = graph.GraphGenerator(master=self.graph_canvas, wave_table=self.wave_table)
             """The graph generator is generic enough to accept any length of wave 'pairs'."""
 
-            self.graph_canvas.grid(row=6, column=0)
+            self.graph_canvas.grid(row=6, column=0, columnspan=2)
 
             self.button_likeness = tk.Button(self)
             self.button_likeness['text'] = 'Wave information'
@@ -112,7 +112,7 @@ class FDSView(tk.Frame):
 
             self.button_save = tk.Button(self, command=partial(self.saveWave, generator=self.generator))
             self.button_save['text'] = 'Save'
-            self.button_save.grid(row=8, column=0, pady=self.frame_padding)
+            self.button_save.grid(row=7, column=1, pady=self.frame_padding)
         except AttributeError as ex:
             """Using the common 'better to ask for forgiveness' principle."""
             tk.messagebox.showerror(title='Error Generating Wave', message='Unable to generate new FDS waveform.')

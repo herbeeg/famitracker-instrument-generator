@@ -17,7 +17,7 @@ class WaveLikeness:
             'Similar': 20,
             'Somewhat similar': 30,
             'Dissimilar': 40,
-            'Completely unlike': 50
+            'Completely dissimilar': 50
         }
 
     def getPercentage(self):
