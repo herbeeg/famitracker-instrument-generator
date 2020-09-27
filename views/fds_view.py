@@ -106,9 +106,13 @@ class FDSView(tk.Frame):
 
             self.graph_canvas.grid(row=6, column=0)
 
+            self.button_likeness = tk.Button(self)
+            self.button_likeness['text'] = 'Wave information'
+            self.button_likeness.grid(row=7, column=0)
+
             self.button_save = tk.Button(self, command=partial(self.saveWave, generator=self.generator))
             self.button_save['text'] = 'Save'
-            self.button_save.grid(row=7, column=0, pady=self.frame_padding)
+            self.button_save.grid(row=8, column=0, pady=self.frame_padding)
         except AttributeError as ex:
             """Using the common 'better to ask for forgiveness' principle."""
             tk.messagebox.showerror(title='Error Generating Wave', message='Unable to generate new FDS waveform.')
