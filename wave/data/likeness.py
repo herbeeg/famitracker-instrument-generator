@@ -1,14 +1,20 @@
 class WaveLikeness:
-    def __init__(self, base, comparison, module):
+    def __init__(self, base, comparison):
         self.base = base
         self.comparison = comparison
-        self.module = module
 
     def checkLikeness(self):
+        diff = 0
+        max_variance = []
+
         for index, wave_value in enumerate(base):
             diff += abs(wave_value, self.comparison[index])
+            """Get the difference between two waveform integers."""
 
-        return diff
+        return self.getLikeness(diff, max_variance)
+
+    def getLikeness(self, total_diff):
+        return
 
     def getRanges(self, total_diff):
         return {
