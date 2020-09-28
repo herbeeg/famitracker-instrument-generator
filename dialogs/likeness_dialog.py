@@ -2,11 +2,13 @@ import tkinter as tk
 import wave.data.likeness as likeness
 
 class LikenessDialog(tk.Toplevel):
-    def __init__(self, master=None):
+    def __init__(self, master=None, data={}):
         super().__init__(master)
         self.master = master
+        self.data = data
 
         self.createWidgets()
+        self.setLikeness()
 
     def createWidgets(self):
         self.range_label = tk.Label(self)
@@ -14,4 +16,11 @@ class LikenessDialog(tk.Toplevel):
         self.range_label.grid(row=0, column=0)
 
         self.range_value = tk.Label(self)
-        self.range_value['text'] = likeness.WaveLikeness().checkLikeness()
+        self.range_value['text'] = ''
+        self.range_value.grid(row=0, column=1)
+
+    def setLikeness(self):
+        try:
+            self.range_value['text'] = self.data['percentage']
+        except KeyError as ex:
+            tk.messagebox.showerror(title='', message='Unable to get likness percentage value for wave.')

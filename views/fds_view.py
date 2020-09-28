@@ -143,6 +143,8 @@ class FDSView(tk.Frame):
             tk.messagebox.showerror(title='Error Saving Wave', message='Unable to save file %s' % filename)
 
     def waveInfo(self):
-        likeness_data = likeness.WaveLikeness().checkLikeness()
-        likeness_dialog = dialog.LikenessDialog()
-        likeness_dialog.pack()
+        likeness_data = {
+            'percentage': likeness.WaveLikeness(base=self.generator.getBaseRepresentation(), comparison=self.generator.getWave()[1]).checkLikeness()
+        }
+        
+        likeness_dialog = dialog.LikenessDialog(data=likeness_data)
