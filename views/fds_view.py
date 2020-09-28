@@ -1,5 +1,7 @@
+import dialogs.likeness_dialog as dialog
 import tkinter.filedialog
 import tkinter as tk
+import wave.data.likeness as likeness
 import wave.graph.graph_gen as graph
 import wave.file.file_gen as file_gen
 
@@ -106,7 +108,7 @@ class FDSView(tk.Frame):
 
             self.graph_canvas.grid(row=6, column=0, columnspan=2)
 
-            self.button_likeness = tk.Button(self)
+            self.button_likeness = tk.Button(self, command=self.waveInfo)
             self.button_likeness['text'] = 'Wave information'
             self.button_likeness.grid(row=7, column=0)
 
@@ -139,4 +141,8 @@ class FDSView(tk.Frame):
                 text_file.close()
         except Exception as ex:
             tk.messagebox.showerror(title='Error Saving Wave', message='Unable to save file %s' % filename)
-            
+
+    def waveInfo(self):
+        likeness_data = likeness.WaveLikeness().checkLikeness()
+        likeness_dialog = dialog.LikenessDialog()
+        likeness_dialog.pack()
