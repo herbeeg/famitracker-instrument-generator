@@ -144,7 +144,7 @@ class FDSView(tk.Frame):
 
     def waveInfo(self):
         likeness_data = {
-            'percentage': likeness.WaveLikeness(base=self.generator.getBaseRepresentation(), comparison=self.generator.getWave()[1]).checkLikeness()
+            'percentage': likeness.WaveLikeness(base=self.generator.getBaseRepresentation(), comparison=self.generator.getWave()[1]).getLikeness()
         }
-        
+
         likeness_dialog = dialog.LikenessDialog(data=likeness_data)

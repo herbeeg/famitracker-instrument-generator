@@ -21,6 +21,6 @@ class LikenessDialog(tk.Toplevel):
 
     def setLikeness(self):
         try:
-            self.range_value['text'] = self.data['percentage']
+            self.range_value['text'] = str(format(self.data['percentage'], '.2f')) + '%'
         except KeyError as ex:
             tk.messagebox.showerror(title='', message='Unable to get likness percentage value for wave.')
