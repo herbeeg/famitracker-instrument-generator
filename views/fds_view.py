@@ -143,6 +143,11 @@ class FDSView(tk.Frame):
             tk.messagebox.showerror(title='Error Saving Wave', message='Unable to save file %s' % filename)
 
     def waveInfo(self):
+        """
+        Create a new tkinter TopLevel widget with
+        information about the most recently
+        generated waveform.
+        """
         try:
             likeness_data = {
                 'percentage': likeness.WaveLikeness(base=self.generator.getBaseRepresentation(), comparison=self.generator.getWave()[1]).getLikeness()
