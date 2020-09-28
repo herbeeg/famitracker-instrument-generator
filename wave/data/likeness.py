@@ -35,8 +35,10 @@ class WaveLikeness:
         comparison_value = self.comparison[list_index]
 
         if abs(0 - base_value) < abs(64 - base_value):
+            """Use whichever bound value is higher when making likeness calculations."""
             bound = abs(64 - base_value)
         else:
             bound = abs(0 - base_value)
 
         return (1 - (diff / bound)) * 100
+        """Convert to percentage."""
