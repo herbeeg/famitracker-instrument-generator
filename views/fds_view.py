@@ -7,9 +7,9 @@ from wave.generators.fds import random, sine, triangle, sawtooth, pulse_50, puls
 
 class FDSView(View):
     """
-    Builds all of the FDS wave generation frame elements, 
-    handles displaying of dynamically created graphs
-    and file saving operations.
+    Builds all of the N163 wave generation frame 
+    elements and handles displaying of 
+    dynamically created graphs.
 
     Extends the tkinter Frame class.
     """
@@ -56,15 +56,15 @@ class FDSView(View):
             self.wave_graph = graph.GraphGenerator(master=self.graph_canvas, wave_table=self.wave_table)
             """The graph generator is generic enough to accept any length of wave 'pairs'."""
 
-            self.graph_canvas.grid(row=6, column=0, columnspan=2)
+            self.graph_canvas.grid(row=5, column=0, columnspan=2)
 
             self.button_likeness = tk.Button(self, command=self.waveInfo)
             self.button_likeness['text'] = 'Wave information'
-            self.button_likeness.grid(row=7, column=0)
+            self.button_likeness.grid(row=6, column=0)
 
             self.button_save = tk.Button(self, command=partial(self.saveWave, generator=self.generator))
             self.button_save['text'] = 'Save'
-            self.button_save.grid(row=7, column=1, pady=self.frame_padding)
+            self.button_save.grid(row=6, column=1, pady=self.frame_padding)
         except AttributeError as ex:
             """Using the common 'better to ask for forgiveness' principle."""
             tk.messagebox.showerror(title='Error Generating Wave', message='Unable to generate new FDS waveform.')

@@ -2,6 +2,7 @@ import tkinter as tk
 
 import views.fds_view as fds
 import views.main_menu as main
+import views.n163_view as n163
 
 class App(tk.Frame):
     """
@@ -40,10 +41,12 @@ class App(tk.Frame):
         if 'menu' == view:
             self.main = main.MainMenu(self)
             self.main.pack()
-
-        if 'fds' == view:
+        elif 'fds' == view:
             self.fds = fds.FDSView(self)
             self.fds.pack()
+        elif 'n163' == view:
+            self.n163 = n163.N163View(self)
+            self.n163.pack()
     
     def clearView(self):
         """

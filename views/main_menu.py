@@ -33,7 +33,7 @@ class MainMenu(tk.Frame):
         self.fds_open['text'] = 'FDS'
         self.fds_open.grid(row=0, column=0)
 
-        self.n163_open = tk.Button(self)
+        self.n163_open = tk.Button(self, command=partial(self.master.loadView, 'n163'))
         self.n163_open['text'] = 'N163'
         self.n163_open.grid(row=1, column=0)
 
