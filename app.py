@@ -24,6 +24,8 @@ class App(tk.Frame):
         self.master = master
         self.main = main.MainMenu(self)
 
+        self.window_title = 'FamiTracker Instrument Generator'
+
         self.main.pack()
         self.pack()
 
@@ -39,12 +41,15 @@ class App(tk.Frame):
         self.clearView()
 
         if 'menu' == view:
+            self.master.title('Menu - ' + self.window_title)
             self.main = main.MainMenu(self)
             self.main.pack()
         elif 'fds' == view:
+            self.master.title('FDS - ' + self.window_title)
             self.fds = fds.FDSView(self)
             self.fds.pack()
         elif 'n163' == view:
+            self.master.title('N163 - ' + self.window_title)
             self.n163 = n163.N163View(self)
             self.n163.pack()
     
@@ -60,7 +65,7 @@ class App(tk.Frame):
 if '__main__' == __name__:
     """Setup root tkinter window."""
     root = tk.Tk()
-    root.title('FamiTracker Instrument Generator')
+    root.title('Menu - FamiTracker Instrument Generator')
     root.geometry('640x480')
 
     app = App(master=root)
