@@ -26,4 +26,4 @@ class NamcoRandomWaveGenerator(NamcoWaveGenerator):
         Returns:
             int: N163 valid note value
         """
-        return random.randrange(32)
+        return random.randrange(16)

@@ -15,6 +15,7 @@ class NamcoWaveGenerator:
         provided in FamiTracker.
         """
         self.wave_length = 32
+        self.mod_length = 16
 
         self.wave = [[] for i in range(2)]
         """Creating an empty 2D array using list comprehension."""
@@ -65,7 +66,7 @@ class NamcoWaveGenerator:
             self.wrapWaveValue(self.getBaseRepresentation()[self.wave_position] + self.variance)
         ]
             
-        note_value = random.randrange(wave_range[0], wave_range[0] + 1)
+        note_value = random.randrange(wave_range[0], wave_range[1] + 1)
         """Adding one to the range to include the ceiling value."""
 
         self.wave_position += 1
@@ -80,21 +81,21 @@ class NamcoWaveGenerator:
         value to the floor or ceiling.
 
         For example, if the next value to generate
-        was between 29 and 39, then if we allowed 
-        values of 29-05, then a value between 0 
-        and 5 would heavily distort the 
+        was between 14 and 19, then if we allowed 
+        values of 14-03, then a value between 0 
+        and 3 would heavily distort the 
         waveform.
 
         Args:
             wave_value (int): Current wave range value to validate
 
         Returns:
-            int: Same value if within constraints, otherwise 0 or 32 dependant on passing the ceiling/floor
+            int: Same value if within constraints, otherwise 0 or 15 dependant on passing the ceiling/floor
         """
         if 0 > wave_value:
             return 0
-        elif self.wave_length <= wave_value:
-            return 32
+        elif self.mod_length < wave_value:
+            return 15
         else:
             return wave_value
 

@@ -3,7 +3,7 @@ import wave.graph.graph_gen as graph
 
 from .view import View
 from functools import partial
-from wave.generators.n163 import random
+from wave.generators.n163 import random, sine
 
 class N163View(View):
     """
@@ -41,7 +41,7 @@ class N163View(View):
         if 'Any' == self.wave_type.get():
             self.generator = random.NamcoRandomWaveGenerator()
         elif 'Sine' == self.wave_type.get():
-            self.generator = sine.FDSSineWaveGenerator(self.wave_variance.get())
+            self.generator = sine.NamcoSineWaveGenerator(self.wave_variance.get())
         elif 'Triangle' == self.wave_type.get():
             self.generator = triangle.FDSTriangleWaveGenerator(self.wave_variance.get())
         elif 'Sawtooth' == self.wave_type.get():

@@ -79,7 +79,7 @@ class FDSWaveGenerator:
             self.wrapWaveValue(self.getBaseRepresentation()[self.wave_position+1] + self.variance)
         ]
             
-        pair_one = random.randrange(wave_range_first[0], wave_range_first[0] + 1)
+        pair_one = random.randrange(wave_range_first[0], wave_range_first[1] + 1)
         pair_two = random.randrange(wave_range_second[0], wave_range_second[1] + 1)
         """Adding one to the range to include the ceiling value."""
 
