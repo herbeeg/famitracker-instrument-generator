@@ -36,8 +36,3 @@ class MainMenu(tk.Frame):
         self.n163_open = tk.Button(self, command=partial(self.master.loadView, 'n163'))
         self.n163_open['text'] = 'N163'
         self.n163_open.grid(row=1, column=0)
-
-        self.vrc7_open = tk.Button(self)
-        self.vrc7_open['text'] = 'VRC7'
-        self.vrc7_open.grid(row=2, column=0)
-        
