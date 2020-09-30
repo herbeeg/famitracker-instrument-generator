@@ -61,6 +61,15 @@ class GLOBAL_SETTINGS:
     def SPLIT():
         return 'SPLIT           ' + str(32)
 
+class NAMCO_GLOBALS:
+    @staticmethod
+    def HEADER():
+        return '# Namco 163 global settings'
+
+    @staticmethod
+    def N163CHANNELS():
+        return 'N163CHANNELS    1'
+
 class MACROS:
     @staticmethod
     def HEADER():

@@ -36,6 +36,11 @@ class FileGeneration:
         self.file += self.information()
         self.file += self.comment()
         self.file += self.settings()
+
+        if '16' == self.expansion:
+            """N163 exports have an additional expansion-specific section."""
+            self.file += self.namco()
+
         self.file += self.macros()
         self.file += self.dpcm()
         self.file += self.instruments()
@@ -107,6 +112,21 @@ class FileGeneration:
         output += (constants.GLOBAL_SETTINGS.VIBRATO() + '\n')
         output += (constants.GLOBAL_SETTINGS.SPLIT() + '\n\n')
 
+        return output
+
+    def namco(self):
+        """
+        Namco N163 expansion chip files have an
+        additional specific section telling
+        FamiTracker how many channels we
+        want to use in the project.
+
+        Returns:
+            str: Additional N163 global settings
+        """
+        output = ''
+        output += (constants.NAMCO_GLOBALS.HEADER() + '\n')
+        output += (constants.NAMCO_GLOBALS.N163CHANNELS() + '\n\n')
         return output
 
     def macros(self):
