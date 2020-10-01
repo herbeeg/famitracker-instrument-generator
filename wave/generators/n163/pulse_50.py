@@ -1,10 +1,10 @@
 from .n163 import NamcoWaveGenerator
 
-class NamcoSineWaveGenerator(NamcoWaveGenerator):
+class NamcoPulse50WaveGenerator(NamcoWaveGenerator):
     """
     Generate a new N163 waveform that is 
-    structurally similar to that of 
-    a sine wave, with a given
+    structurally similar to that of a 
+    50% pulse wave, with a given
     hint of variance.
 
     Extends the NamcoWaveGenerator class.
@@ -14,13 +14,13 @@ class NamcoSineWaveGenerator(NamcoWaveGenerator):
         Track the position of the next waveform
         pair to generate so we know what values 
         we want to compare against the base 
-        sine wave representation.
+        50% pulse wave representation.
 
         A "variance" value can be passed to give
         fewer or more constraints to the wave
         generator telling it how far it
         can deviate from a standard
-        sine wave shape.
+        50% pulse wave shape.
         """
         self.wave_position = 0
         self.variance = variance
@@ -31,7 +31,8 @@ class NamcoSineWaveGenerator(NamcoWaveGenerator):
         """
         Store a base waveform value representation
         of what FamiTracker values are used
-        when a user generates a sine wave.
+        when a user generates a 50% pulse 
+        wave.
 
         This is referenced in FamiTracker as the
         'MML string'.
@@ -39,7 +40,4 @@ class NamcoSineWaveGenerator(NamcoWaveGenerator):
         Returns:
             list: Waveform values in range(16)
         """
-        return [
-            8, 9, 11, 12, 13, 14, 15, 15, 15, 15, 14, 14, 13, 11, 10, 9, 
-            7, 6, 4, 3, 2, 1, 0, 0, 0, 0, 1, 1, 2, 4, 5, 6
-        ]
+        return [0 for i in range(16)] + [15 for i in range(16)]
