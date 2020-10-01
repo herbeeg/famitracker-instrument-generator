@@ -1,13 +1,14 @@
+import tkinter.simpledialog
 import tkinter as tk
 import wave.data.likeness as likeness
 
-class LikenessDialog(tk.Toplevel):
+class LikenessDialog(tk.simpledialog.Dialog):
     """
     Build the dialog window as a new
     top level element that can
     display likeness data.
 
-    Extends the tkinter TopLevel class.
+    Extends the tkinter simpledialog.Dialog class.
     """
     def __init__(self, master=None, data={}):
         """
@@ -18,14 +19,11 @@ class LikenessDialog(tk.Toplevel):
             master (Tk, optional): The parent tkinter window element. Defaults to None.
             data (dict, optional): Passed data to display in the window. Defaults to {}.
         """
-        super().__init__(master)
         self.master = master
         self.data = data
+        super().__init__(master)
 
-        self.createWidgets()
-        self.setLikeness()
-
-    def createWidgets(self):
+    def body(self, master=None):
         """
         Render likeness data widgets for the
         entire dialog window.
@@ -37,11 +35,25 @@ class LikenessDialog(tk.Toplevel):
         """
         self.range_label = tk.Label(self)
         self.range_label['text'] = 'Likeness: '
-        self.range_label.grid(row=0, column=0)
+        self.range_label.pack()
 
         self.range_value = tk.Label(self)
         self.range_value['text'] = ''
-        self.range_value.grid(row=0, column=1)
+        self.range_value.pack()
+
+        self.setLikeness()
+
+        return
+
+    def buttonbox(self):
+        box = tk.Frame(self)
+
+        w = tk.Button(box, text="OK", width=10, command=self.ok, default=tk.ACTIVE)
+        w.pack(padx=5, pady=5)
+
+        self.bind("<Return>", self.ok)
+
+        box.pack()
 
     def setLikeness(self):
         """

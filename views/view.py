@@ -100,6 +100,6 @@ class View(tk.Frame):
                 'percentage': likeness.WaveLikeness(base=self.generator.getBaseRepresentation(), comparison=self.generator.getWave()[1]).getLikeness()
             }
 
-            likeness_dialog = dialog.LikenessDialog(data=likeness_data)
+            likeness_dialog = dialog.LikenessDialog(self, data=likeness_data)
         except AttributeError as ex:
             tk.messagebox.showinfo(title='Cannot Retrieve Data', message='Unable to retrieve information for randomly generated waves.')
