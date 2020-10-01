@@ -91,13 +91,13 @@ class View(tk.Frame):
 
     def waveInfo(self):
         """
-        Create a new tkinter TopLevel widget with
+        Create a new tkinter Dialog widget with
         information about the most recently
         generated waveform.
         """
         try:
             likeness_data = {
-                'percentage': likeness.WaveLikeness(base=self.generator.getBaseRepresentation(), comparison=self.generator.getWave()[1]).getLikeness()
+                'percentage': likeness.WaveLikeness(base=self.generator.getBaseRepresentation(), comparison=self.generator.getWave()[1], ceiling=self.generator.getModLength()).getLikeness()
             }
 
             likeness_dialog = dialog.LikenessDialog(self, data=likeness_data)

@@ -150,3 +150,13 @@ class NamcoWaveGenerator:
             str: Converted Unix timestamp
         """
         return str(self.name)
+
+    def getModLength(self):
+        """
+        Range of values allowed when constructing
+        an N163 waveform.
+
+        Returns:
+            int: Max wave value size
+        """
+        return self.mod_length

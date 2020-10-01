@@ -7,18 +7,20 @@ class WaveLikeness:
     likeness to other 'structured'
     known waveforms.
     """
-    def __init__(self, base, comparison):
+    def __init__(self, base, comparison, ceiling):
         """
         Both sets of waveform values
         stored for later use during
         likeness comparisons.
 
         Args:
-            base (list): Known waveform type values
-            comparison (list): Generated waveform type values
+            base (list):        Known waveform type values
+            comparison (list):  Generated waveform type values
+            ceiling (int):      Waveform value limit
         """
         self.base = base
         self.comparison = comparison
+        self.ceiling = ceiling
 
     def getLikeness(self):
         """
@@ -66,9 +68,9 @@ class WaveLikeness:
         base_value = self.base[list_index]
         comparison_value = self.comparison[list_index]
 
-        if abs(0 - base_value) < abs(64 - base_value):
+        if abs(0 - base_value) < abs(self.ceiling - base_value):
             """Use whichever bound value is higher when making likeness calculations."""
-            bound = abs(64 - base_value)
+            bound = abs(self.ceiling - base_value)
         else:
             bound = abs(0 - base_value)
 

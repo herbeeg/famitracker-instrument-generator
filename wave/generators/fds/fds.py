@@ -15,7 +15,7 @@ class FDSWaveGenerator:
         provided in FamiTracker.
         """
         self.wave_length = 64
-        self.mod_length = 32
+        self.mod_length = 64
 
         self.wave = [[] for i in range(2)]
         """Creating an empty 2D array using list comprehension."""
@@ -165,3 +165,13 @@ class FDSWaveGenerator:
             str: Converted Unix timestamp
         """
         return str(self.name)
+
+    def getModLength(self):
+        """
+        Range of values allowed when constructing
+        an FDS waveform.
+
+        Returns:
+            int: Max wave value size
+        """
+        return self.mod_length
