@@ -60,13 +60,16 @@ class WaveLikeness:
             = 12.5% variance 
             = 87.50% likeness
 
-        Return:
+        Args:
+            list_index (int):   Pointer to check the base wave value
+            diff (int):         Current waveform value difference
+
+        Returns:
             float: Non-rounded float percentage
         """
         bound = 0
 
         base_value = self.base[list_index]
-        comparison_value = self.comparison[list_index]
 
         if abs(0 - base_value) < abs(self.ceiling - base_value):
             """Use whichever bound value is higher when making likeness calculations."""
