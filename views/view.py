@@ -80,14 +80,15 @@ class View(tk.Frame):
         """
         filename = tk.filedialog.asksaveasfilename(title='Save Wave', filetypes=[('Text Files', '*.txt')])
 
-        try:
-            with open(filename, 'w+') as text_file:
-                file_contents = file_gen.FileGeneration(generator).generate()
-                """Raw text file generation is handled separately."""
-                text_file.write(file_contents)
-                text_file.close()
-        except Exception as ex:
-            tk.messagebox.showerror(title='Error Saving Wave', message='Unable to save file %s' % filename)
+        if filename:
+            try:
+                with open(filename, 'w+') as text_file:
+                    file_contents = file_gen.FileGeneration(generator).generate()
+                    """Raw text file generation is handled separately."""
+                    text_file.write(file_contents)
+                    text_file.close()
+            except Exception as ex:
+                tk.messagebox.showerror(title='Error Saving Wave', message='Unable to save file %s' % filename)
 
     def waveInfo(self):
         """
